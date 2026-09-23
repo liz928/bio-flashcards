@@ -4,205 +4,221 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f2419">
-<title>Bio Unit 1 Flashcards</title>
+<title>Bio Unit 1</title>
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#129516;</text></svg>">
 <style>
-:root{
-  --bg:#0f2419; --panel:#183526; --panel2:#1f4530;
-  --ink:#eaf5ee; --dim:#9dbfa9; --line:#2b5740;
-  --accent:#4ade80; --warn:#fbbf24; --bad:#f87171;
-}
+:root{--bg:#0f2419;--panel:#183526;--panel2:#1f4530;--ink:#eaf5ee;
+ --dim:#9dbfa9;--line:#2b5740;--accent:#4ade80;--bad:#f87171}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-  background:var(--bg);color:var(--ink);
-  min-height:100dvh;display:flex;flex-direction:column;
-  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
-}
-header{padding:14px 16px 10px;border-bottom:1px solid var(--line)}
-h1{font-size:17px;font-weight:650;letter-spacing:-.3px}
-.sub{font-size:12px;color:var(--dim);margin-top:2px}
-
-.topics{display:flex;gap:7px;overflow-x:auto;padding:11px 16px;
-  border-bottom:1px solid var(--line);scrollbar-width:none}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+ background:var(--bg);color:var(--ink);min-height:100dvh;display:flex;
+ flex-direction:column;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+header{padding:13px 16px 9px;border-bottom:1px solid var(--line)}
+h1{font-size:16.5px;font-weight:650;letter-spacing:-.3px}
+.sub{font-size:11.5px;color:var(--dim);margin-top:2px}
+.modes{display:flex;gap:7px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.mode{flex:1;padding:9px;border-radius:10px;background:var(--panel);
+ border:1px solid var(--line);font-size:13px;color:var(--dim);cursor:pointer;
+ text-align:center;font-weight:600}
+.mode.on{background:var(--accent);border-color:var(--accent);color:#06240f}
+.topics{display:flex;gap:7px;overflow-x:auto;padding:10px 16px;
+ border-bottom:1px solid var(--line);scrollbar-width:none}
 .topics::-webkit-scrollbar{display:none}
-.chip{flex:0 0 auto;padding:7px 13px;border-radius:999px;
-  background:var(--panel);border:1px solid var(--line);
-  font-size:12.5px;color:var(--dim);cursor:pointer;white-space:nowrap;
-  transition:.15s}
-.chip.on{background:var(--accent);border-color:var(--accent);color:#06240f;
-  font-weight:650}
-.chip .n{opacity:.7;margin-left:4px;font-size:11px}
-
-.bar{padding:8px 16px;display:flex;align-items:center;gap:10px;
-  font-size:12px;color:var(--dim);border-bottom:1px solid var(--line)}
+.chip{flex:0 0 auto;padding:6px 12px;border-radius:999px;background:var(--panel);
+ border:1px solid var(--line);font-size:12px;color:var(--dim);cursor:pointer;
+ white-space:nowrap}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#06240f;font-weight:650}
+.chip .n{opacity:.65;margin-left:4px;font-size:10.5px}
+.bar{padding:7px 16px;display:flex;align-items:center;gap:10px;font-size:11.5px;
+ color:var(--dim);border-bottom:1px solid var(--line)}
 .prog{flex:1;height:5px;background:var(--panel2);border-radius:99px;overflow:hidden}
 .prog i{display:block;height:100%;background:var(--accent);width:0;transition:.3s}
-
-main{flex:1;display:flex;align-items:center;justify-content:center;padding:18px 16px}
-.card{width:100%;max-width:520px;min-height:47vh;background:var(--panel);
-  border:1px solid var(--line);border-radius:18px;padding:26px 22px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;cursor:pointer;position:relative;
-  box-shadow:0 8px 28px rgba(0,0,0,.28)}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:16px}
+.card{width:100%;max-width:540px;min-height:44vh;background:var(--panel);
+ border:1px solid var(--line);border-radius:18px;padding:24px 20px;display:flex;
+ flex-direction:column;align-items:center;justify-content:center;text-align:center;
+ cursor:pointer;position:relative;box-shadow:0 8px 28px rgba(0,0,0,.28)}
 .card.flip{background:var(--panel2);border-color:var(--accent)}
-.side{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;
-  color:var(--dim);position:absolute;top:14px;left:0;right:0}
-.txt{font-size:20px;line-height:1.42;font-weight:550}
-.card.flip .txt{font-size:17.5px;font-weight:450;line-height:1.5}
-.tag{position:absolute;bottom:13px;left:0;right:0;font-size:11px;color:var(--dim)}
-.hint{position:absolute;bottom:13px;right:16px;font-size:11px;color:var(--dim);
-  opacity:.65}
-
-.acts{display:flex;gap:9px;padding:0 16px 14px;max-width:552px;margin:0 auto;
-  width:100%}
-button{flex:1;padding:14px 10px;border-radius:13px;border:1px solid var(--line);
-  background:var(--panel);color:var(--ink);font-size:14.5px;font-weight:600;
-  cursor:pointer;font-family:inherit;transition:.12s}
+.side{font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;
+ color:var(--dim);position:absolute;top:13px;left:0;right:0}
+.txt{font-size:19.5px;line-height:1.42;font-weight:550}
+.card.flip .txt{font-size:17px;font-weight:450;line-height:1.5}
+.tag{position:absolute;bottom:12px;left:0;right:0;font-size:10.5px;color:var(--dim)}
+/* quiz */
+.qbox{width:100%;max-width:560px}
+.qtop{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;
+ margin-bottom:6px}
+.qtext{font-size:17.5px;line-height:1.4;font-weight:550;margin-bottom:14px}
+.opt{padding:13px 15px;border-radius:12px;background:var(--panel);
+ border:1px solid var(--line);margin-bottom:8px;cursor:pointer;font-size:14.5px;
+ line-height:1.35;display:flex;gap:10px}
+.opt b{color:var(--dim);flex:0 0 auto}
+.opt.pick{border-color:var(--accent)}
+.opt.right{background:#16452a;border-color:var(--accent)}
+.opt.wrong{background:#3a1d1d;border-color:var(--bad)}
+.why{font-size:13px;color:var(--dim);background:var(--panel2);padding:11px 13px;
+ border-radius:11px;margin-top:4px;line-height:1.45}
+.acts{display:flex;gap:9px;padding:0 16px 13px;max-width:572px;margin:0 auto;width:100%}
+button{flex:1;padding:13px 10px;border-radius:12px;border:1px solid var(--line);
+ background:var(--panel);color:var(--ink);font-size:14px;font-weight:600;
+ cursor:pointer;font-family:inherit}
 button:active{transform:scale(.97)}
 .know{background:var(--accent);border-color:var(--accent);color:#06240f}
 .again{background:#3a2020;border-color:#5c3030;color:#ffc4c4}
-
-.nav{display:flex;gap:9px;padding:0 16px 16px;max-width:552px;margin:0 auto;
-  width:100%}
-.nav button{background:transparent;font-size:13px;font-weight:500;padding:10px}
-
-.done{text-align:center;padding:30px 20px}
-.done h2{font-size:22px;margin-bottom:8px}
-.done p{color:var(--dim);font-size:14px;margin-bottom:18px}
-.score{font-size:40px;font-weight:700;color:var(--accent);margin:12px 0}
-.done button{max-width:230px;margin:0 auto}
+.nav{display:flex;gap:9px;padding:0 16px 15px;max-width:572px;margin:0 auto;width:100%}
+.nav button{background:transparent;font-size:12.5px;font-weight:500;padding:9px}
+.done{text-align:center;padding:26px 18px}
+.done h2{font-size:21px;margin-bottom:6px}
+.done p{color:var(--dim);font-size:13.5px;margin-bottom:14px}
+.score{font-size:40px;font-weight:700;color:var(--accent);margin:10px 0}
+.brk{text-align:left;max-width:360px;margin:0 auto 16px;font-size:12.5px}
+.brk div{display:flex;justify-content:space-between;padding:3px 0;
+ border-bottom:1px solid var(--line)}
+.brk .lo{color:var(--bad)}
 .hide{display:none!important}
-@media(min-width:700px){ .txt{font-size:23px} .card{min-height:40vh} }
-</style>
-</head>
-<body>
+</style></head><body>
 
 <header>
   <h1>&#129516; Bio Unit 1 &mdash; Chemistry of Life</h1>
-  <div class="sub" id="sub">92 cards</div>
+  <div class="sub" id="sub"></div>
 </header>
+
+<div class="modes">
+  <div class="mode on" id="m0" onclick="setMode('cards')">Flashcards</div>
+  <div class="mode" id="m1" onclick="setMode('quiz')">Practice Test</div>
+</div>
 
 <div class="topics" id="topics"></div>
 
 <div class="bar">
   <span id="count">0 / 0</span>
   <div class="prog"><i id="bar"></i></div>
-  <span id="right">0 known</span>
+  <span id="right">0</span>
 </div>
 
-<main id="main">
-  <div class="card" id="card" onclick="flip()">
-    <div class="side" id="side">TERM</div>
-    <div class="txt" id="txt"></div>
-    <div class="tag" id="tag"></div>
-  </div>
-</main>
-
-<div class="acts" id="acts">
-  <button class="again" onclick="mark(0)">Still learning</button>
-  <button class="know" onclick="mark(1)">Got it</button>
-</div>
-<div class="nav">
-  <button onclick="shuffle()">&#8635; Shuffle</button>
-  <button onclick="restart()">Restart</button>
-  <button onclick="onlyMissed()">Review missed</button>
-</div>
+<main id="main"></main>
+<div class="acts" id="acts"></div>
+<div class="nav" id="nav"></div>
 
 <script>
-const DATA = {"unit":"Honors Biology - Unit 1: Chemistry of Life","cards":[{"t":"MISSED - storage form of glucose in ANIMALS","d":"Glycogen (in plants it is starch - do not mix these up)","topic":"Missed on practice tests"},{"t":"MISSED - which statement about enzymes is FALSE","d":"\"Enzymes are nucleic acids\" is FALSE. Enzymes ARE proteins.","topic":"Missed on practice tests"},{"t":"MISSED - correct statement about pH","d":"Pure water is neutral pH 7 because H+ concentration equals OH- concentration","topic":"Missed on practice tests"},{"t":"MISSED - organic chemistry is the study of","d":"Carbon compounds","topic":"Missed on practice tests"},{"t":"MISSED - what is true of BOTH an amino acid and starch","d":"Both contain oxygen (starch has no nitrogen, and starch is not in proteins)","topic":"Missed on practice tests"},{"t":"MISSED - enzyme that breaks down proteins","d":"Protease. Amylase breaks starch, lipase breaks lipids, lactase breaks lactose.","topic":"Missed on practice tests"},{"t":"MISSED - which macromolecule makes up the cell membrane","d":"Lipids (phospholipid bilayer)","topic":"Missed on practice tests"},{"t":"MISSED - long chains of amino acids are found in","d":"Proteins","topic":"Missed on practice tests"},{"t":"MISSED - which pair is UNRELATED","d":"enzyme : nucleic acid. Enzymes are proteins, not nucleic acids.","topic":"Missed on practice tests"},{"t":"MISSED - relationship between monomers and polymers","d":"Monomers are SUBUNITS of polymers, not just smaller versions","topic":"Missed on practice tests"},{"t":"Independent variable","d":"What the scientist CHANGES on purpose. Goes on the X axis.","topic":"Scientific method & variables"},{"t":"Dependent variable","d":"What you MEASURE, the result. Goes on the Y axis. It DEPENDS on the IV.","topic":"Scientific method & variables"},{"t":"Trick for remembering IV and DV","d":"DRY MIX. Dependent-Responding-Y axis. Manipulated-Independent-X axis.","topic":"Scientific method & variables"},{"t":"Enzyme lab: independent variable","d":"The treatment of the potato - room temp, boiled, or frozen","topic":"Scientific method & variables"},{"t":"Enzyme lab: dependent variable","d":"The rate of reaction - number of bubbles, scored 0 to 5","topic":"Scientific method & variables"},{"t":"Graph of temperature vs enzyme activity: IV","d":"Temperature (X axis)","topic":"Enzymes"},{"t":"Graph of temperature vs enzyme activity: DV","d":"Relative activity (Y axis)","topic":"Enzymes"},{"t":"Constants / controlled variables","d":"Everything kept the SAME between groups so the test is fair","topic":"Scientific method & variables"},{"t":"Control group","d":"The group with no treatment - the baseline you compare against","topic":"Scientific method & variables"},{"t":"Observation","d":"What you detect with senses or tools. A fact. \"The liquid bubbled.\"","topic":"Scientific method & variables"},{"t":"Inference","d":"An explanation drawn from observations. \"The enzyme is working.\"","topic":"Scientific method & variables"},{"t":"Hypothesis format","d":"If (IV), then (DV), because (reasoning)","topic":"Scientific method & variables"},{"t":"The four macromolecules","d":"Carbohydrates, Lipids, Proteins, Nucleic Acids","topic":"Macromolecules"},{"t":"Monomer of carbohydrates","d":"Monosaccharide (simple sugar)","topic":"Macromolecules"},{"t":"Monomer of lipids","d":"Fatty acids and glycerol","topic":"Macromolecules"},{"t":"Monomer of proteins","d":"Amino acids","topic":"Macromolecules"},{"t":"Monomer of nucleic acids","d":"Nucleotides","topic":"Macromolecules"},{"t":"Polymer of carbohydrates","d":"Polysaccharide","topic":"Macromolecules"},{"t":"Polymer of proteins","d":"Polypeptide","topic":"Macromolecules"},{"t":"Polymer of nucleic acids","d":"DNA and RNA","topic":"Macromolecules"},{"t":"Elements in carbohydrates","d":"C, H, O. Hydrogen to oxygen ratio is 2 to 1.","topic":"Macromolecules"},{"t":"Elements in lipids","d":"C, H, O - but far less oxygen than carbohydrates","topic":"Macromolecules"},{"t":"Elements in proteins","d":"C, H, O, N and sometimes S","topic":"Macromolecules"},{"t":"Elements in nucleic acids","d":"C, H, O, N, P","topic":"Macromolecules"},{"t":"Which macromolecules contain ONLY C, H, O","d":"Carbohydrates and lipids","topic":"Macromolecules"},{"t":"Four elements making up the bulk weight of living things","d":"Carbon, Hydrogen, Oxygen, Nitrogen (CHON)","topic":"Macromolecules"},{"t":"Function of carbohydrates","d":"Quick energy, and structure such as cellulose in plant cell walls","topic":"Macromolecules"},{"t":"Function of lipids","d":"Stored energy, insulation, cell membranes","topic":"Macromolecules"},{"t":"Function of proteins","d":"Movement, structure, enzymes, transport - diverse functions","topic":"Macromolecules"},{"t":"Function of nucleic acids","d":"Store and transmit genetic information","topic":"Macromolecules"},{"t":"Foods high in carbohydrates","d":"Fruits and grains","topic":"Macromolecules"},{"t":"Foods high in protein","d":"Meat, beans, nuts","topic":"Macromolecules"},{"t":"Foods high in lipids","d":"Oil, butter, margarine","topic":"Macromolecules"},{"t":"Starch","d":"Storage form of glucose in PLANTS","topic":"Named molecules"},{"t":"Glycogen","d":"Storage form of glucose in ANIMALS","topic":"Named molecules"},{"t":"Cellulose","d":"Carbohydrate that builds the plant cell wall. NOT a protein.","topic":"Named molecules"},{"t":"Hemoglobin","d":"Protein that transports oxygen in red blood cells","topic":"Named molecules"},{"t":"Keratin","d":"Protein found in hair and nails","topic":"Named molecules"},{"t":"Collagen","d":"Protein found in skin and tendons","topic":"Named molecules"},{"t":"Enzymes end in what suffix","d":"-ase. NOT -ose. Sugars end in -ose.","topic":"Named molecules"},{"t":"Sugars end in what suffix","d":"-ose (glucose, lactose, sucrose)","topic":"Named molecules"},{"t":"Structure of a nucleotide","d":"A nitrogen base, a phosphate group, and a 5-carbon sugar","topic":"Macromolecules"},{"t":"Phospholipid","d":"Two fatty acids plus a phosphate attached to glycerol. Builds cell membranes.","topic":"Macromolecules"},{"t":"Examples of lipids","d":"Fats, oils, waxes, steroids, cholesterol. NOT starch.","topic":"Macromolecules"},{"t":"What is an enzyme","d":"A protein that acts as a biological catalyst","topic":"Enzymes"},{"t":"What does a catalyst do","d":"Speeds up a reaction by lowering activation energy","topic":"Enzymes"},{"t":"Substrate","d":"The specific molecule an enzyme acts on","topic":"Enzymes"},{"t":"Active site","d":"The place on the enzyme where the substrate fits","topic":"Enzymes"},{"t":"Why is enzyme action called lock and key","d":"Each enzyme fits only one specific substrate, like a key fits one lock","topic":"Enzymes"},{"t":"Are enzymes used up in a reaction","d":"No - they can be reused over and over","topic":"Enzymes"},{"t":"What is catalase","d":"An enzyme that breaks hydrogen peroxide into water and oxygen","topic":"Enzymes"},{"t":"Catalase reaction","d":"2 H2O2 becomes 2 H2O plus O2. The bubbles are oxygen gas.","topic":"Enzymes"},{"t":"What does DENATURED mean","d":"The protein loses its SHAPE, so the substrate no longer fits the active site","topic":"Enzymes"},{"t":"Why does boiling stop an enzyme","d":"Heat denatures it - the shape is permanently changed. It is not \"killed.\"","topic":"Enzymes"},{"t":"Why does freezing slow an enzyme","d":"Cold slows molecular motion. Unlike boiling, this is usually REVERSIBLE.","topic":"Enzymes"},{"t":"Why did already-used peroxide make no bubbles","d":"The substrate was used up - nothing left for the enzyme to break down","topic":"Enzymes"},{"t":"Enzyme activity above the optimal temperature","d":"Drops sharply because the enzyme denatures","topic":"Enzymes"},{"t":"Where do most human enzymes work best","d":"Around 37 degrees C, body temperature","topic":"Enzymes"},{"t":"Dehydration synthesis","d":"Builds a polymer by REMOVING water. Monomers join together.","topic":"Reactions & bonds"},{"t":"Hydrolysis","d":"Breaks a polymer by ADDING water. Hydro = water, lysis = split.","topic":"Reactions & bonds"},{"t":"Which reaction builds molecules","d":"Dehydration synthesis","topic":"Reactions & bonds"},{"t":"Which reaction breaks molecules down","d":"Hydrolysis","topic":"Reactions & bonds"},{"t":"Covalent bond","d":"Atoms SHARE electrons. Strong. Holds molecules together.","topic":"Reactions & bonds"},{"t":"Ionic bond","d":"One atom TRANSFERS an electron to another, forming charged ions.","topic":"Reactions & bonds"},{"t":"Hydrogen bond","d":"Weak attraction between a slightly positive H and a slightly negative atom","topic":"Reactions & bonds"},{"t":"Which bond holds the two strands of DNA together","d":"Hydrogen bonds","topic":"Reactions & bonds"},{"t":"Which bond joins atoms within a water molecule","d":"Covalent bonds","topic":"Reactions & bonds"},{"t":"Why is water called polar","d":"Oxygen pulls electrons harder, so O is slightly negative and H slightly positive","topic":"Water & pH"},{"t":"Cohesion","d":"Water sticking to water. Causes surface tension.","topic":"Water & pH"},{"t":"Adhesion","d":"Water sticking to other surfaces","topic":"Water & pH"},{"t":"Capillary action","d":"Water climbing a narrow tube - adhesion plus cohesion together","topic":"Water & pH"},{"t":"Why does ice float","d":"Water expands when it freezes, so ice is less dense than liquid water","topic":"Water & pH"},{"t":"High specific heat of water","d":"Water resists temperature change - it takes a lot of energy to heat","topic":"Water & pH"},{"t":"Why is water the universal solvent","d":"Its polarity lets it dissolve many polar and ionic substances","topic":"Water & pH"},{"t":"pH scale range","d":"0 to 14","topic":"Water & pH"},{"t":"Acid pH range","d":"0 to 7. More hydrogen ions.","topic":"Water & pH"},{"t":"Base pH range","d":"7 to 14. More hydroxide ions.","topic":"Water & pH"},{"t":"Neutral pH","d":"7 - hydrogen ions equal hydroxide ions, like pure water","topic":"Water & pH"},{"t":"Is pH 2 stronger or weaker than pH 6","d":"Stronger acid. Lower number means more acidic.","topic":"Water & pH"},{"t":"Characteristics of life","d":"Made of cells, uses energy, grows and develops, reproduces, responds to stimuli, maintains homeostasis, has DNA, evolves","topic":"Characteristics of life"},{"t":"Homeostasis","d":"Maintaining a stable internal environment despite outside changes","topic":"Characteristics of life"},{"t":"Steps of the scientific method","d":"Observe, question, hypothesis, experiment, collect data, analyze, conclude","topic":"Scientific method & variables"}],"topics":["Missed on practice tests","Scientific method & variables","Macromolecules","Named molecules","Enzymes","Reactions & bonds","Water & pH","Characteristics of life"]};
-let all = DATA.cards, deck = [], i = 0, flipped = false, known = 0, missed = [];
-let topic = "All";
+const D = {"cards":[{"t":"MISSED - storage form of glucose in ANIMALS","d":"Glycogen (in plants it is starch - do not mix these up)","topic":"Missed on practice tests"},{"t":"MISSED - which statement about enzymes is FALSE","d":"\"Enzymes are nucleic acids\" is FALSE. Enzymes ARE proteins.","topic":"Missed on practice tests"},{"t":"MISSED - correct statement about pH","d":"Pure water is neutral pH 7 because H+ concentration equals OH- concentration","topic":"Missed on practice tests"},{"t":"MISSED - organic chemistry is the study of","d":"Carbon compounds","topic":"Missed on practice tests"},{"t":"MISSED - what is true of BOTH an amino acid and starch","d":"Both contain oxygen (starch has no nitrogen, and starch is not in proteins)","topic":"Missed on practice tests"},{"t":"MISSED - enzyme that breaks down proteins","d":"Protease. Amylase breaks starch, lipase breaks lipids, lactase breaks lactose.","topic":"Missed on practice tests"},{"t":"MISSED - which macromolecule makes up the cell membrane","d":"Lipids (phospholipid bilayer)","topic":"Missed on practice tests"},{"t":"MISSED - long chains of amino acids are found in","d":"Proteins","topic":"Missed on practice tests"},{"t":"MISSED - which pair is UNRELATED","d":"enzyme : nucleic acid. Enzymes are proteins, not nucleic acids.","topic":"Missed on practice tests"},{"t":"MISSED - relationship between monomers and polymers","d":"Monomers are SUBUNITS of polymers, not just smaller versions","topic":"Missed on practice tests"},{"t":"Independent variable","d":"What the scientist CHANGES on purpose. Goes on the X axis.","topic":"Scientific method & variables"},{"t":"Dependent variable","d":"What you MEASURE, the result. Goes on the Y axis. It DEPENDS on the IV.","topic":"Scientific method & variables"},{"t":"Trick for remembering IV and DV","d":"DRY MIX. Dependent-Responding-Y axis. Manipulated-Independent-X axis.","topic":"Scientific method & variables"},{"t":"Enzyme lab: independent variable","d":"The treatment of the potato - room temp, boiled, or frozen","topic":"Scientific method & variables"},{"t":"Enzyme lab: dependent variable","d":"The rate of reaction - number of bubbles, scored 0 to 5","topic":"Scientific method & variables"},{"t":"Graph of temperature vs enzyme activity: IV","d":"Temperature (X axis)","topic":"Enzymes"},{"t":"Graph of temperature vs enzyme activity: DV","d":"Relative activity (Y axis)","topic":"Enzymes"},{"t":"Constants / controlled variables","d":"Everything kept the SAME between groups so the test is fair","topic":"Scientific method & variables"},{"t":"Control group","d":"The group with no treatment - the baseline you compare against","topic":"Scientific method & variables"},{"t":"Observation","d":"What you detect with senses or tools. A fact. \"The liquid bubbled.\"","topic":"Scientific method & variables"},{"t":"Inference","d":"An explanation drawn from observations. \"The enzyme is working.\"","topic":"Scientific method & variables"},{"t":"Hypothesis format","d":"If (IV), then (DV), because (reasoning)","topic":"Scientific method & variables"},{"t":"The four macromolecules","d":"Carbohydrates, Lipids, Proteins, Nucleic Acids","topic":"Macromolecules"},{"t":"Monomer of carbohydrates","d":"Monosaccharide (simple sugar)","topic":"Macromolecules"},{"t":"Monomer of lipids","d":"Fatty acids and glycerol","topic":"Macromolecules"},{"t":"Monomer of proteins","d":"Amino acids","topic":"Macromolecules"},{"t":"Monomer of nucleic acids","d":"Nucleotides","topic":"Macromolecules"},{"t":"Polymer of carbohydrates","d":"Polysaccharide","topic":"Macromolecules"},{"t":"Polymer of proteins","d":"Polypeptide","topic":"Macromolecules"},{"t":"Polymer of nucleic acids","d":"DNA and RNA","topic":"Macromolecules"},{"t":"Elements in carbohydrates","d":"C, H, O. Hydrogen to oxygen ratio is 2 to 1.","topic":"Macromolecules"},{"t":"Elements in lipids","d":"C, H, O - but far less oxygen than carbohydrates","topic":"Macromolecules"},{"t":"Elements in proteins","d":"C, H, O, N and sometimes S","topic":"Macromolecules"},{"t":"Elements in nucleic acids","d":"C, H, O, N, P","topic":"Macromolecules"},{"t":"Which macromolecules contain ONLY C, H, O","d":"Carbohydrates and lipids","topic":"Macromolecules"},{"t":"Four elements making up the bulk weight of living things","d":"Carbon, Hydrogen, Oxygen, Nitrogen (CHON)","topic":"Macromolecules"},{"t":"Function of carbohydrates","d":"Quick energy, and structure such as cellulose in plant cell walls","topic":"Macromolecules"},{"t":"Function of lipids","d":"Stored energy, insulation, cell membranes","topic":"Macromolecules"},{"t":"Function of proteins","d":"Movement, structure, enzymes, transport - diverse functions","topic":"Macromolecules"},{"t":"Function of nucleic acids","d":"Store and transmit genetic information","topic":"Macromolecules"},{"t":"Foods high in carbohydrates","d":"Fruits and grains","topic":"Macromolecules"},{"t":"Foods high in protein","d":"Meat, beans, nuts","topic":"Macromolecules"},{"t":"Foods high in lipids","d":"Oil, butter, margarine","topic":"Macromolecules"},{"t":"Starch","d":"Storage form of glucose in PLANTS","topic":"Named molecules"},{"t":"Glycogen","d":"Storage form of glucose in ANIMALS","topic":"Named molecules"},{"t":"Cellulose","d":"Carbohydrate that builds the plant cell wall. NOT a protein.","topic":"Named molecules"},{"t":"Hemoglobin","d":"Protein that transports oxygen in red blood cells","topic":"Named molecules"},{"t":"Keratin","d":"Protein found in hair and nails","topic":"Named molecules"},{"t":"Collagen","d":"Protein found in skin and tendons","topic":"Named molecules"},{"t":"Enzymes end in what suffix","d":"-ase. NOT -ose. Sugars end in -ose.","topic":"Named molecules"},{"t":"Sugars end in what suffix","d":"-ose (glucose, lactose, sucrose)","topic":"Named molecules"},{"t":"Structure of a nucleotide","d":"A nitrogen base, a phosphate group, and a 5-carbon sugar","topic":"Macromolecules"},{"t":"Phospholipid","d":"Two fatty acids plus a phosphate attached to glycerol. Builds cell membranes.","topic":"Macromolecules"},{"t":"Examples of lipids","d":"Fats, oils, waxes, steroids, cholesterol. NOT starch.","topic":"Macromolecules"},{"t":"What is an enzyme","d":"A protein that acts as a biological catalyst","topic":"Enzymes"},{"t":"What does a catalyst do","d":"Speeds up a reaction by lowering activation energy","topic":"Enzymes"},{"t":"Substrate","d":"The specific molecule an enzyme acts on","topic":"Enzymes"},{"t":"Active site","d":"The place on the enzyme where the substrate fits","topic":"Enzymes"},{"t":"Why is enzyme action called lock and key","d":"Each enzyme fits only one specific substrate, like a key fits one lock","topic":"Enzymes"},{"t":"Are enzymes used up in a reaction","d":"No - they can be reused over and over","topic":"Enzymes"},{"t":"What is catalase","d":"An enzyme that breaks hydrogen peroxide into water and oxygen","topic":"Enzymes"},{"t":"Catalase reaction","d":"2 H2O2 becomes 2 H2O plus O2. The bubbles are oxygen gas.","topic":"Enzymes"},{"t":"What does DENATURED mean","d":"The protein loses its SHAPE, so the substrate no longer fits the active site","topic":"Enzymes"},{"t":"Why does boiling stop an enzyme","d":"Heat denatures it - the shape is permanently changed. It is not \"killed.\"","topic":"Enzymes"},{"t":"Why does freezing slow an enzyme","d":"Cold slows molecular motion. Unlike boiling, this is usually REVERSIBLE.","topic":"Enzymes"},{"t":"Why did already-used peroxide make no bubbles","d":"The substrate was used up - nothing left for the enzyme to break down","topic":"Enzymes"},{"t":"Enzyme activity above the optimal temperature","d":"Drops sharply because the enzyme denatures","topic":"Enzymes"},{"t":"Where do most human enzymes work best","d":"Around 37 degrees C, body temperature","topic":"Enzymes"},{"t":"Dehydration synthesis","d":"Builds a polymer by REMOVING water. Monomers join together.","topic":"Reactions & bonds"},{"t":"Hydrolysis","d":"Breaks a polymer by ADDING water. Hydro = water, lysis = split.","topic":"Reactions & bonds"},{"t":"Which reaction builds molecules","d":"Dehydration synthesis","topic":"Reactions & bonds"},{"t":"Which reaction breaks molecules down","d":"Hydrolysis","topic":"Reactions & bonds"},{"t":"Covalent bond","d":"Atoms SHARE electrons. Strong. Holds molecules together.","topic":"Reactions & bonds"},{"t":"Ionic bond","d":"One atom TRANSFERS an electron to another, forming charged ions.","topic":"Reactions & bonds"},{"t":"Hydrogen bond","d":"Weak attraction between a slightly positive H and a slightly negative atom","topic":"Reactions & bonds"},{"t":"Which bond holds the two strands of DNA together","d":"Hydrogen bonds","topic":"Reactions & bonds"},{"t":"Which bond joins atoms within a water molecule","d":"Covalent bonds","topic":"Reactions & bonds"},{"t":"Why is water called polar","d":"Oxygen pulls electrons harder, so O is slightly negative and H slightly positive","topic":"Water & pH"},{"t":"Cohesion","d":"Water sticking to water. Causes surface tension.","topic":"Water & pH"},{"t":"Adhesion","d":"Water sticking to other surfaces","topic":"Water & pH"},{"t":"Capillary action","d":"Water climbing a narrow tube - adhesion plus cohesion together","topic":"Water & pH"},{"t":"Why does ice float","d":"Water expands when it freezes, so ice is less dense than liquid water","topic":"Water & pH"},{"t":"High specific heat of water","d":"Water resists temperature change - it takes a lot of energy to heat","topic":"Water & pH"},{"t":"Why is water the universal solvent","d":"Its polarity lets it dissolve many polar and ionic substances","topic":"Water & pH"},{"t":"pH scale range","d":"0 to 14","topic":"Water & pH"},{"t":"Acid pH range","d":"0 to 7. More hydrogen ions.","topic":"Water & pH"},{"t":"Base pH range","d":"7 to 14. More hydroxide ions.","topic":"Water & pH"},{"t":"Neutral pH","d":"7 - hydrogen ions equal hydroxide ions, like pure water","topic":"Water & pH"},{"t":"Is pH 2 stronger or weaker than pH 6","d":"Stronger acid. Lower number means more acidic.","topic":"Water & pH"},{"t":"Characteristics of life","d":"Made of cells, uses energy, grows and develops, reproduces, responds to stimuli, maintains homeostasis, has DNA, evolves","topic":"Characteristics of life"},{"t":"Homeostasis","d":"Maintaining a stable internal environment despite outside changes","topic":"Characteristics of life"},{"t":"Steps of the scientific method","d":"Observe, question, hypothesis, experiment, collect data, analyze, conclude","topic":"Scientific method & variables"}],"topics":["Missed on practice tests","Scientific method & variables","Macromolecules","Named molecules","Enzymes","Reactions & bonds","Water & pH","Characteristics of life"],"test":[{"topic":"Observations vs Inferences","q":"Which of these is an OBSERVATION?","opts":["The plant is thirsty","The soil is dry to the touch","The plant needs fertilizer","The plant is dying"],"a":1,"why":"An observation is detected with senses or tools. The rest are explanations."},{"topic":"Observations vs Inferences","q":"Which of these is an INFERENCE?","opts":["The test tube produced 14 bubbles","The liquid turned from clear to blue","The enzyme is breaking down the peroxide","The solution measured pH 3"],"a":2,"why":"It explains WHY. The others are measurements."},{"topic":"Observations vs Inferences","q":"A student writes: 'The beaker felt warm, so the reaction released energy.' This statement contains:","opts":["Two observations","Two inferences","An observation followed by an inference","An inference followed by an observation"],"a":2,"why":"Felt warm = observation. Released energy = the conclusion drawn from it."},{"topic":"Observations vs Inferences","q":"Why do scientists separate observations from inferences?","opts":["Inferences are always wrong","Observations are facts; inferences are interpretations that could be wrong","Observations require equipment","Inferences come first in the scientific method"],"a":1,"why":"Two people can share an observation but reach different inferences."},{"topic":"Scientific Method","q":"What is the correct order?","opts":["Hypothesis, observation, experiment, conclusion","Observation, question, hypothesis, experiment, analyze, conclude","Experiment, hypothesis, observation, conclusion","Question, conclusion, experiment, hypothesis"],"a":1,"why":"You observe something first, which is what prompts the question."},{"topic":"Scientific Method","q":"Which is a properly written hypothesis?","opts":["Temperature affects enzymes","I think the potato will bubble","If potato is boiled, then catalase activity will decrease, because heat denatures the enzyme","Enzymes work best at body temperature"],"a":2,"why":"If (IV), then (DV), because (reasoning). Testable and explains the mechanism."},{"topic":"Scientific Method","q":"A hypothesis that is not supported by the data should be:","opts":["Erased from the lab report","Changed after the fact to match the results","Reported honestly, since unsupported results are still useful data","Repeated until it works"],"a":2,"why":"A disproven hypothesis is a legitimate result, not a failure."},{"topic":"Scientific Method","q":"Why do scientists repeat trials?","opts":["To use up extra materials","To reduce the effect of random error and confirm the result is reliable","Because the first trial is always wrong","To change the independent variable"],"a":1,"why":"One trial could be a fluke. Repetition tests reliability."},{"topic":"Variables","q":"A student tests how pH affects pepsin activity. The INDEPENDENT variable is:","opts":["Pepsin","pH","Rate of digestion","Temperature"],"a":1,"why":"The IV is what the scientist changes on purpose. X axis."},{"topic":"Variables","q":"In that same experiment, the DEPENDENT variable is:","opts":["pH","Pepsin","Rate of digestion","The test tubes"],"a":2,"why":"The DV is what you measure. It DEPENDS on the IV. Y axis."},{"topic":"Variables","q":"In the catalase lab, which was a CONSTANT?","opts":["The temperature treatment of the potato","The rate of bubbling","The amount of hydrogen peroxide used in each tube","Whether the potato was boiled"],"a":2,"why":"Constants are kept identical so the comparison is fair."},{"topic":"Variables","q":"What is the purpose of a CONTROL group?","opts":["To make the experiment take longer","To provide an untreated baseline for comparison","To change two variables at once","To prove the hypothesis correct"],"a":1,"why":"Without a baseline you cannot tell whether the treatment did anything."},{"topic":"Characteristics of Life","q":"Which is NOT a characteristic of living things?","opts":["Responds to stimuli","Maintains homeostasis","Is composed of at least two cells","Uses energy"],"a":2,"why":"ONE cell is enough. Bacteria are alive."},{"topic":"Characteristics of Life","q":"Homeostasis means:","opts":["Growing larger over time","Maintaining a stable internal environment despite external change","Reproducing offspring","Responding to light"],"a":1,"why":"Stable inside, regardless of what happens outside."},{"topic":"Characteristics of Life","q":"A dog panting on a hot day is an example of:","opts":["Reproduction","Homeostasis and response to stimuli","Growth and development","Evolution"],"a":1,"why":"It senses heat and acts to hold internal temperature steady."},{"topic":"Characteristics of Life","q":"Which molecule do ALL living things use to store genetic information?","opts":["Protein","Lipid","DNA","Carbohydrate"],"a":2,"why":"DNA is universal to life on Earth."},{"topic":"Carbohydrates","q":"The monomer of a carbohydrate is a:","opts":["Amino acid","Monosaccharide","Nucleotide","Fatty acid"],"a":1,"why":"Mono = one, saccharide = sugar."},{"topic":"Carbohydrates","q":"The storage form of glucose in ANIMALS is:","opts":["Starch","Cellulose","Glycogen","Sucrose"],"a":2,"why":"Glycogen in animals, starch in plants."},{"topic":"Carbohydrates","q":"In carbohydrates, the ratio of hydrogen to oxygen is:","opts":["1:1","2:1","1:2","3:1"],"a":1,"why":"Like water - two hydrogens per oxygen. That is why they are called CARBO-HYDRATES."},{"topic":"Carbohydrates","q":"Which is NOT a carbohydrate?","opts":["Cellulose","Lactose","Protease","Glycogen"],"a":2,"why":"Protease ends in -ase, so it is an enzyme, and enzymes are proteins."},{"topic":"Lipids","q":"The monomer(s) of lipids are:","opts":["Amino acids","Nucleotides","Fatty acids and glycerol","Monosaccharides"],"a":2,"why":"Lipids are built from a glycerol backbone plus fatty acid tails."},{"topic":"Lipids","q":"Which macromolecule makes up the cell membrane?","opts":["Nucleic acids","Lipids","Carbohydrates","Starch"],"a":1,"why":"Phospholipid bilayer."},{"topic":"Lipids","q":"A phospholipid consists of:","opts":["Three fatty acids and a glycerol","Two fatty acids, a phosphate group, and a glycerol","A nitrogen base, a phosphate, and a sugar","A chain of amino acids"],"a":1,"why":"Two tails and a phosphate head - the head is what faces water."},{"topic":"Lipids","q":"Which is NOT a lipid?","opts":["Cholesterol","Earwax","Starch","Saturated fat"],"a":2,"why":"Starch is a carbohydrate."},{"topic":"Proteins","q":"The monomer of a protein is a(n):","opts":["Nucleotide","Amino acid","Monosaccharide","Fatty acid"],"a":1,"why":"Amino acids link into polypeptide chains."},{"topic":"Proteins","q":"Which of the following is NOT a protein?","opts":["Hemoglobin","Collagen","Cellulose","Keratin"],"a":2,"why":"Cellulose is a carbohydrate that builds plant cell walls."},{"topic":"Proteins","q":"Which element do proteins contain that carbohydrates and lipids do NOT?","opts":["Carbon","Oxygen","Nitrogen","Hydrogen"],"a":2,"why":"C, H, O, N and sometimes S. The N is the giveaway."},{"topic":"Proteins","q":"Long chains of amino acids are found in:","opts":["Nucleic acids","Lipids","Carbohydrates","Proteins"],"a":3,"why":"Amino acid is the protein monomer."},{"topic":"Nucleic Acids","q":"The monomer of a nucleic acid is a:","opts":["Amino acid","Nucleotide","Monosaccharide","Fatty acid"],"a":1,"why":"Nucleotides link into DNA and RNA."},{"topic":"Nucleic Acids","q":"A nucleotide is made of:","opts":["A nitrogen base and a phosphate","A nitrogen base, a phosphate, and a 6-carbon sugar","A nitrogen base, a phosphate, and a 5-carbon sugar","Two fatty acids and a glycerol"],"a":2,"why":"FIVE-carbon sugar. Six-carbon is a distractor."},{"topic":"Nucleic Acids","q":"The function of nucleic acids is to:","opts":["Provide quick energy","Store and transmit genetic information","Insulate organs","Speed up chemical reactions"],"a":1,"why":"DNA stores it, RNA transmits it."},{"topic":"Nucleic Acids","q":"Which elements are found in nucleic acids but NOT in carbohydrates?","opts":["Carbon and hydrogen","Nitrogen and phosphorus","Oxygen and carbon","Sulfur and oxygen"],"a":1,"why":"Carbs are only C, H, O. Nucleic acids add N and P."},{"topic":"Enzymes","q":"Enzymes belong to which macromolecule family?","opts":["Nucleic acids","Carbohydrates","Proteins","Lipids"],"a":2,"why":"Enzymes ARE proteins. Most-tested fact in the unit."},{"topic":"Enzymes","q":"When an enzyme is boiled it stops working because:","opts":["The enzyme is killed","The substrate is destroyed","The enzyme is denatured and loses its shape","The enzyme is used up"],"a":2,"why":"DENATURED. Enzymes are not alive, so they cannot be killed."},{"topic":"Enzymes","q":"In the catalase lab, peroxide that had already reacted produced no bubbles because:","opts":["The catalase was used up","The substrate was used up","The peroxide denatured","The temperature was wrong"],"a":1,"why":"Enzymes are reusable. The SUBSTRATE gets consumed."},{"topic":"Enzymes","q":"On a graph of temperature vs enzyme activity, activity above the optimal temperature:","opts":["Keeps rising","Levels off","Drops sharply because the enzyme denatures","Doubles"],"a":2,"why":"The curve peaks then falls off a cliff."},{"topic":"Bonds","q":"In a COVALENT bond, atoms:","opts":["Transfer electrons","Share electrons","Attract without contact","Exchange protons"],"a":1,"why":"Covalent = co-sharing."},{"topic":"Bonds","q":"In an IONIC bond, atoms:","opts":["Share electrons equally","Share electrons unequally","Transfer electrons, creating charged ions","Form hydrogen bridges"],"a":2,"why":"One gives, one takes. The result is oppositely charged ions."},{"topic":"Bonds","q":"Which bond holds the two strands of DNA together?","opts":["Covalent","Ionic","Hydrogen","Peptide"],"a":2,"why":"Weak hydrogen bonds - which is exactly why DNA can unzip to copy itself."},{"topic":"Bonds","q":"Which bond joins the hydrogen and oxygen atoms WITHIN a single water molecule?","opts":["Hydrogen bonds","Covalent bonds","Ionic bonds","Peptide bonds"],"a":1,"why":"Covalent inside the molecule, hydrogen bonds BETWEEN molecules."},{"topic":"Dehydration & Hydrolysis","q":"Which process BUILDS a polymer?","opts":["Hydrolysis","Denaturation","Dehydration synthesis","Catalysis"],"a":2,"why":"Removes water to join monomers together."},{"topic":"Dehydration & Hydrolysis","q":"Which process BREAKS DOWN a polymer?","opts":["Dehydration synthesis","Hydrolysis","Condensation","Synthesis"],"a":1,"why":"Hydro = water, lysis = split. Adding water breaks the bond."},{"topic":"Dehydration & Hydrolysis","q":"During dehydration synthesis, what molecule is released?","opts":["Carbon dioxide","Oxygen","Water","Glucose"],"a":2,"why":"DE-HYDRATION - water is removed."},{"topic":"Dehydration & Hydrolysis","q":"Digesting a sandwich in your stomach is an example of:","opts":["Dehydration synthesis","Hydrolysis","Denaturation only","Photosynthesis"],"a":1,"why":"Digestion breaks polymers into monomers using water."},{"topic":"Properties of Water","q":"Water is described as POLAR because:","opts":["It freezes at 0 degrees C","Oxygen pulls electrons harder, making O slightly negative and H slightly positive","It contains two hydrogens","It dissolves salt"],"a":1,"why":"Uneven electron sharing creates partial charges. Everything else follows from this."},{"topic":"Properties of Water","q":"Ice floats because:","opts":["Ice is warmer than water","Water expands when it freezes, making ice less dense","Ice contains air bubbles","Ice has no hydrogen bonds"],"a":1,"why":"Unusual - most substances get denser when solid."},{"topic":"Properties of Water","q":"Water climbing up a narrow tube is:","opts":["Cohesion alone","Adhesion alone","Capillary action - adhesion and cohesion together","Surface tension"],"a":2,"why":"Water sticks to the tube AND to itself, so it pulls itself up."},{"topic":"Properties of Water","q":"Water is called the universal solvent because:","opts":["It dissolves absolutely everything","Its polarity lets it dissolve many polar and ionic substances","It has a high boiling point","It is found everywhere on Earth"],"a":1,"why":"Not literally everything - oils do not dissolve in it."},{"topic":"pH","q":"A solution with a pH of 3 is:","opts":["Basic","Neutral","Acidic","Cannot be determined"],"a":2,"why":"0-7 acidic. Lower number = stronger acid."},{"topic":"pH","q":"Pure water has a pH of 7 because:","opts":["It contains no ions","The concentration of H+ equals the concentration of OH-","It has more OH- than H+","It has more H+ than OH-"],"a":1,"why":"Neutral means the two ion concentrations are equal."}]};
+let mode='cards', topic='All', deck=[], i=0, flipped=false, known=0, missed=[];
+let answered=false, qwrong=[];
+
+function shuffleArr(a){for(let j=a.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[a[j],a[k]]=[a[k],a[j]];}}
+
+function setMode(m){ mode=m; topic='All';
+  document.getElementById('m0').className='mode'+(m==='cards'?' on':'');
+  document.getElementById('m1').className='mode'+(m==='quiz'?' on':'');
+  topics(); restart(); }
 
 function topics(){
-  const el = document.getElementById('topics');
-  const counts = {};
-  all.forEach(c => counts[c.topic] = (counts[c.topic]||0)+1);
-  const list = ["All", ...DATA.topics];
-  el.innerHTML = list.map(t =>
-    `<div class="chip${t===topic?' on':''}" onclick="pick('${t.replace(/'/g,"\\'")}')">`+
-    `${t}<span class="n">${t==='All'?all.length:counts[t]||0}</span></div>`).join('');
+  const el=document.getElementById('topics');
+  const src = mode==='cards'? D.cards : D.test;
+  const key = mode==='cards'? 'topic':'topic';
+  const counts={}; src.forEach(c=>counts[c[key]]=(counts[c[key]]||0)+1);
+  const list=['All', ...Object.keys(counts)];
+  el.innerHTML=list.map(t=>`<div class="chip${t===topic?' on':''}" `+
+    `onclick="pick(${JSON.stringify(t)})">${t}`+
+    `<span class="n">${t==='All'?src.length:counts[t]}</span></div>`).join('');
 }
-function pick(t){ topic = t; restart(); topics(); }
+function pick(t){ topic=t; topics(); restart(); }
 
 function build(){
-  deck = topic==="All" ? all.slice() : all.filter(c=>c.topic===topic);
+  const src = mode==='cards'? D.cards : D.test;
+  deck = topic==='All'? src.slice() : src.filter(c=>c.topic===topic);
   shuffleArr(deck);
 }
-function shuffleArr(a){ for(let j=a.length-1;j>0;j--){ const k=Math.floor(Math.random()*(j+1)); [a[j],a[k]]=[a[k],a[j]]; } }
+function restart(){ i=0; known=0; missed=[]; qwrong=[]; build(); show(); }
 
 function show(){
-  document.getElementById('main').classList.remove('hide');
-  document.getElementById('acts').classList.remove('hide');
+  const m=document.getElementById('main');
   if(i>=deck.length){ finish(); return; }
-  const c = deck[i];
-  flipped = false;
-  const card = document.getElementById('card');
-  card.className = 'card';
-  document.getElementById('side').textContent = 'TERM';
-  document.getElementById('txt').textContent = c.t;
-  document.getElementById('tag').textContent = c.topic;
-  document.getElementById('count').textContent = (i+1)+' / '+deck.length;
-  document.getElementById('bar').style.width = (i/deck.length*100)+'%';
-  document.getElementById('right').textContent = known+' known';
+  document.getElementById('count').textContent=(i+1)+' / '+deck.length;
+  document.getElementById('bar').style.width=(i/deck.length*100)+'%';
+  document.getElementById('right').textContent=known+' right';
+  if(mode==='cards'){
+    const c=deck[i]; flipped=false;
+    m.innerHTML=`<div class="card" id="card" onclick="flip()">`+
+      `<div class="side" id="side">TERM</div>`+
+      `<div class="txt" id="txt"></div>`+
+      `<div class="tag">${c.topic}</div></div>`;
+    document.getElementById('txt').textContent=c.t;
+    document.getElementById('acts').innerHTML=
+      `<button class="again" onclick="mark(0)">Still learning</button>`+
+      `<button class="know" onclick="mark(1)">Got it</button>`;
+  } else {
+    const q=deck[i]; answered=false;
+    m.innerHTML=`<div class="qbox"><div class="qtop">${q.topic}</div>`+
+      `<div class="qtext">${q.q}</div>`+
+      q.opts.map((o,j)=>`<div class="opt" id="o${j}" onclick="answer(${j})">`+
+        `<b>${'ABCD'[j]}</b><span>${o}</span></div>`).join('')+
+      `<div id="whybox"></div></div>`;
+    document.getElementById('acts').innerHTML='';
+  }
+  document.getElementById('nav').innerHTML=
+    `<button onclick="restart()">Restart</button>`+
+    (missed.length||qwrong.length?`<button onclick="reviewMissed()">Review missed</button>`:'');
 }
 function flip(){
-  if(i>=deck.length) return;
-  flipped = !flipped;
-  const c = deck[i], card = document.getElementById('card');
-  card.className = flipped ? 'card flip' : 'card';
-  document.getElementById('side').textContent = flipped ? 'DEFINITION' : 'TERM';
-  document.getElementById('txt').textContent = flipped ? c.d : c.t;
+  if(mode!=='cards'||i>=deck.length) return;
+  flipped=!flipped; const c=deck[i], el=document.getElementById('card');
+  el.className=flipped?'card flip':'card';
+  document.getElementById('side').textContent=flipped?'DEFINITION':'TERM';
+  document.getElementById('txt').textContent=flipped?c.d:c.t;
 }
-function mark(ok){
-  if(i>=deck.length) return;
-  if(ok) known++; else missed.push(deck[i]);
-  i++; show();
+function mark(ok){ if(ok)known++; else missed.push(deck[i]); i++; show(); }
+function answer(j){
+  if(answered) return; answered=true;
+  const q=deck[i];
+  document.getElementById('o'+j).classList.add(j===q.a?'right':'wrong');
+  if(j!==q.a){ document.getElementById('o'+q.a).classList.add('right');
+               qwrong.push(q); } else known++;
+  document.getElementById('whybox').innerHTML=
+    `<div class="why">${q.why}</div>`;
+  document.getElementById('acts').innerHTML=
+    `<button class="know" onclick="i++;show()">Next &rarr;</button>`;
 }
 function finish(){
-  const pct = deck.length ? Math.round(known/deck.length*100) : 0;
-  document.getElementById('main').innerHTML =
-    `<div class="done"><h2>Done!</h2><div class="score">${pct}%</div>`+
-    `<p>${known} of ${deck.length} known`+
-    (missed.length?`<br>${missed.length} to review`:'')+`</p>`+
-    (missed.length?`<button class="know" onclick="onlyMissed()">Review the ${missed.length} missed</button>`:
-     `<button class="know" onclick="restart()">Go again</button>`)+`</div>`;
-  document.getElementById('acts').classList.add('hide');
+  const pct=deck.length?Math.round(known/deck.length*100):0;
+  const wrong = mode==='cards'? missed : qwrong;
+  const byTopic={};
+  wrong.forEach(w=>byTopic[w.topic]=(byTopic[w.topic]||0)+1);
+  let brk='';
+  if(Object.keys(byTopic).length){
+    brk='<div class="brk">'+Object.entries(byTopic).sort((a,b)=>b[1]-a[1])
+      .map(([t,n])=>`<div><span>${t}</span><span class="lo">${n} missed</span></div>`)
+      .join('')+'</div>';
+  }
+  document.getElementById('main').innerHTML=
+    `<div class="done"><h2>Done</h2><div class="score">${pct}%</div>`+
+    `<p>${known} of ${deck.length} correct</p>${brk}`+
+    (wrong.length?`<button class="know" onclick="reviewMissed()">Review the ${wrong.length} missed</button>`
+                 :`<button class="know" onclick="restart()">Go again</button>`)+`</div>`;
+  document.getElementById('acts').innerHTML='';
   document.getElementById('bar').style.width='100%';
 }
-function restart(){
-  document.getElementById('main').innerHTML =
-    `<div class="card" id="card" onclick="flip()">`+
-    `<div class="side" id="side">TERM</div><div class="txt" id="txt"></div>`+
-    `<div class="tag" id="tag"></div></div>`;
-  i=0; known=0; missed=[]; build(); show();
+function reviewMissed(){
+  const wrong = mode==='cards'? missed : qwrong;
+  if(!wrong.length){ restart(); return; }
+  deck=wrong.slice(); missed=[]; qwrong=[]; i=0; known=0; shuffleArr(deck); show();
 }
-function onlyMissed(){
-  if(!missed.length){ restart(); return; }
-  document.getElementById('main').innerHTML =
-    `<div class="card" id="card" onclick="flip()">`+
-    `<div class="side" id="side">TERM</div><div class="txt" id="txt"></div>`+
-    `<div class="tag" id="tag"></div></div>`;
-  deck = missed.slice(); missed=[]; i=0; known=0; shuffleArr(deck); show();
-}
-function shuffle(){ shuffleArr(deck); i=0; known=0; missed=[]; show(); }
-
-document.addEventListener('keydown', e=>{
-  if(e.key===' '){ e.preventDefault(); flip(); }
-  if(e.key==='ArrowRight') mark(1);
-  if(e.key==='ArrowLeft') mark(0);
+document.addEventListener('keydown',e=>{
+  if(mode!=='cards') return;
+  if(e.key===' '){e.preventDefault();flip();}
+  if(e.key==='ArrowRight')mark(1);
+  if(e.key==='ArrowLeft')mark(0);
 });
 let x0=null;
 document.addEventListener('touchstart',e=>x0=e.changedTouches[0].clientX,{passive:true});
 document.addEventListener('touchend',e=>{
-  if(x0===null) return;
+  if(mode!=='cards'||x0===null)return;
   const dx=e.changedTouches[0].clientX-x0;
-  if(Math.abs(dx)>70){ mark(dx>0?1:0); }
-  x0=null;
-},{passive:true});
+  if(Math.abs(dx)>70) mark(dx>0?1:0);
+  x0=null;},{passive:true});
 
-document.getElementById('sub').textContent = all.length+' cards \u00b7 tap to flip \u00b7 swipe or arrow keys';
+document.getElementById('sub').textContent =
+  D.cards.length+' flashcards \u00b7 '+D.test.length+'-question practice test';
 topics(); build(); show();
 </script>
-</body>
-</html>
+</body></html>
