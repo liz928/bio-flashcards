@@ -33,7 +33,7 @@ h1{font-size:16.5px;font-weight:650;letter-spacing:-.3px}
  color:var(--dim);border-bottom:1px solid var(--line)}
 .prog{flex:1;height:5px;background:var(--panel2);border-radius:99px;overflow:hidden}
 .prog i{display:block;height:100%;background:var(--accent);width:0;transition:.3s}
-main{flex:1;display:flex;align-items:center;justify-content:center;padding:16px}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
 .card{width:100%;max-width:540px;min-height:44vh;background:var(--panel);
  border:1px solid var(--line);border-radius:18px;padding:24px 20px;display:flex;
  flex-direction:column;align-items:center;justify-content:center;text-align:center;
@@ -75,6 +75,18 @@ button:active{transform:scale(.97)}
 .brk div{display:flex;justify-content:space-between;padding:3px 0;
  border-bottom:1px solid var(--line)}
 .brk .lo{color:var(--bad)}
+.review{margin-top:22px;text-align:left;max-width:560px}
+.review h3{font-size:14px;color:var(--ink);margin-bottom:10px;
+ padding-bottom:5px;border-bottom:1px solid var(--line)}
+.rv{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--bad);
+ border-radius:11px;padding:12px 14px;margin-bottom:9px}
+.rvq{font-size:14px;font-weight:600;line-height:1.35;margin-bottom:7px}
+.rvbad{font-size:12.5px;color:#ffb4b4;margin-bottom:3px}
+.rvgood{font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.rvwhy{font-size:12.5px;color:var(--dim);line-height:1.45;
+ background:var(--panel2);padding:8px 10px;border-radius:8px}
+.rvtop{font-size:10.5px;color:var(--dim);margin-top:6px;text-transform:uppercase;
+ letter-spacing:.8px}
 .hide{display:none!important}
 </style></head><body>
 
@@ -173,7 +185,7 @@ function answer(j){
   const q=deck[i];
   document.getElementById('o'+j).classList.add(j===q.a?'right':'wrong');
   if(j!==q.a){ document.getElementById('o'+q.a).classList.add('right');
-               qwrong.push(q); } else known++;
+               qwrong.push(Object.assign({}, q, {picked:j})); } else known++;
   document.getElementById('whybox').innerHTML=
     `<div class="why">${q.why}</div>`;
   document.getElementById('acts').innerHTML=
@@ -190,11 +202,21 @@ function finish(){
       .map(([t,n])=>`<div><span>${t}</span><span class="lo">${n} missed</span></div>`)
       .join('')+'</div>';
   }
+  let list='';
+  if(mode==='quiz' && wrong.length){
+    list='<div class="review"><h3>What you missed</h3>'+wrong.map(w=>
+      `<div class="rv"><div class="rvq">${w.q}</div>`+
+      `<div class="rvbad">Your answer: ${'ABCD'[w.picked]}. ${w.opts[w.picked]}</div>`+
+      `<div class="rvgood">Correct: ${'ABCD'[w.a]}. ${w.opts[w.a]}</div>`+
+      `<div class="rvwhy">${w.why}</div>`+
+      `<div class="rvtop">${w.topic}</div></div>`).join('')+'</div>';
+  }
   document.getElementById('main').innerHTML=
     `<div class="done"><h2>Done</h2><div class="score">${pct}%</div>`+
     `<p>${known} of ${deck.length} correct</p>${brk}`+
-    (wrong.length?`<button class="know" onclick="reviewMissed()">Review the ${wrong.length} missed</button>`
-                 :`<button class="know" onclick="restart()">Go again</button>`)+`</div>`;
+    (wrong.length?`<button class="know" onclick="reviewMissed()">Redo the ${wrong.length} missed</button>`
+                 :`<button class="know" onclick="restart()">Go again</button>`)+
+    list+`</div>`;
   document.getElementById('acts').innerHTML='';
   document.getElementById('bar').style.width='100%';
 }
